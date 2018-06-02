@@ -1,4 +1,4 @@
-package org.ionedan.upgradedfortnight.libraryservice;
+package org.ionedan.ufortnight.libraryservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package org.ionedan.upgradedfortnight.libraryservice;
+package org.ionedan.ufortnight.libraryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
