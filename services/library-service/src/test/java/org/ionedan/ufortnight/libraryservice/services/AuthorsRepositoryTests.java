@@ -20,7 +20,7 @@ public class AuthorsRepositoryTests {
 
     @Test
     public void createAuthorTest() {
-        var author = new Author("Daniel", "Ionescu");
+        var author = new Author("firstname", "lastname");
 
         var entity = repository.save(author);
 
