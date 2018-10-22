@@ -1,9 +1,7 @@
 package org.ionedan.ufortnight.libraryservice.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,10 +10,13 @@ import java.util.Optional;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long id;
 
@@ -34,13 +35,5 @@ public class Book {
 
     @Setter @Getter
     private Integer yearOfAppearance;
-
-    public Book() {
-
-    }
-
-    public Book(String title) {
-        this.title = title;
-    }
 
 }

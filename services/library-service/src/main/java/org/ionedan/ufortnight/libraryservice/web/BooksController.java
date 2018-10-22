@@ -1,6 +1,7 @@
 package org.ionedan.ufortnight.libraryservice.web;
 
 import org.ionedan.ufortnight.libraryservice.domain.models.Book;
+import org.ionedan.ufortnight.libraryservice.exceptions.BookNotFoundException;
 import org.ionedan.ufortnight.libraryservice.services.BooksRepository;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -12,12 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/books")
+@RestController()
+@RequestMapping("/api/books")
 @ExposesResourceFor(Book.class)
 public class BooksController {
 
@@ -32,21 +31,64 @@ public class BooksController {
         this.entityLinks = entityLinks;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     HttpEntity<Resources<Book>> fetchAllBooks() {
-        var resources = new Resources<>(this.repository.findAll());
-        return new ResponseEntity<>(resources, HttpStatus.OK);
+        var resources = new Resources<Book>(this.repository.findAll());
+        return new ResponseEntity<Resources<Book>>(resources, HttpStatus.OK);
     }
 
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     HttpEntity<Resource<Book>> fetchBookById(@PathVariable(name = "id") long id) {
         var book = this.repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+                .orElseThrow(
+                        () -> new BookNotFoundException(
+                                String.format("Book having the id '%d' was not found", id))
+                );
 
         return new ResponseEntity<>(
                 new Resource<Book>(book),
                 HttpStatus.OK);
     }
+
+
+    @PostMapping()
+    Book create(@RequestBody Book newBook) {
+        return this.repository.save(newBook);
+    }
+
+
+    @PutMapping("/{id}")
+    Book update(@RequestBody Book newBook, @PathVariable long id) {
+        return repository.findById(id)
+                .map(
+                        book -> {
+                            book.setAuthors(newBook.getAuthors());
+                            book.setDescription(newBook.getDescription());
+                            book.setSubtitle(newBook.getSubtitle());
+                            book.setTitle(newBook.getTitle());
+                            book.setYearOfAppearance(newBook.getYearOfAppearance());
+
+                            return this.repository.save(book);
+                        }
+                )
+                .orElseThrow(
+                        () -> new BookNotFoundException(
+                                String.format("Book having the id '%d' was not found", id))
+                );
+    }
+
+
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable  Long id) {
+        repository.findById(id)
+                .ifPresentOrElse(
+                        (book) -> this.repository.delete(book),
+                        () -> new BookNotFoundException(
+                                String.format("Book having the id '%d' was not found", id))
+                );
+    }
+
+
 
 }
