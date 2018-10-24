@@ -2,6 +2,7 @@ package org.ionedan.ufortnight.libraryservice.web;
 
 import org.ionedan.ufortnight.libraryservice.domain.models.Author;
 import org.ionedan.ufortnight.libraryservice.domain.models.Book;
+import org.ionedan.ufortnight.libraryservice.services.AuthorsRepository;
 import org.ionedan.ufortnight.libraryservice.services.BooksRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -37,6 +40,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class BooksControllerTests {
 
     private MockMvc mockMvc;
+
+    @Autowired
+    private AuthorsRepository authorsRepository;
 
     @Autowired
     private BooksRepository repository;
@@ -49,6 +55,7 @@ public class BooksControllerTests {
     @Before
     public void setUp() {
         this.repository.deleteAll();
+        this.authorsRepository.deleteAll();
 
         var book1 = Book.builder()
                 .title("Book1")
