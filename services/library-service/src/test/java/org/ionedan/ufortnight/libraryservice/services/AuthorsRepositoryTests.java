@@ -22,9 +22,11 @@ public class AuthorsRepositoryTests {
 
     @Test
     public void createAuthorTest() {
-        var author = new Author("firstname", "lastname");
-
-        var entity = repository.save(author);
+        var entity = repository.save(
+                Author.builder()
+                .firstName("firstname")
+                .lastName("lastname")
+                .build());
 
         assertThat(entity).isNotNull();
         assertThat(entity.getId()).isGreaterThan(-1);
