@@ -2,11 +2,8 @@ package org.ionedan.ufortnight.libraryservice.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,19 +39,19 @@ public class Book {
     @Setter
     private Set<Language> languages;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @Getter
     @Setter
-    private String title;
+    private Publisher publisher;
 
     @Setter
     @Getter
     private String subtitle;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @Column(nullable = false)
     @Getter
     @Setter
-    private Publisher publisher;
+    private String title;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @Getter @Setter
