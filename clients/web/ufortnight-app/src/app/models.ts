@@ -4,7 +4,7 @@ export interface IAuthor {
     lastName: string;
 }
 
-//_links: {self: {href: string}}
+// _links: {self: {href: string}}
 
 export interface IBook {
     id: number;
@@ -26,7 +26,7 @@ export interface IBookCategory {
 
 export interface IBookType {
     id: number;
-    nume: string;
+    name: string;
 }
 
 export interface ILanguage {

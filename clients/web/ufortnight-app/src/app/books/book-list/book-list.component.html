@@ -1,7 +1,10 @@
-<h2>
-  book-list works!
-</h2>
 
 <div *ngFor="let book of (getBooks())">
-  <p>{{book.title}}</p>
+  <em>{{book.title}}</em>
+  <div *ngFor="let author of book.authors">
+    {{author.firstName}} {{author.lastName}}
+  </div>
+  <br>
 </div>
+
+

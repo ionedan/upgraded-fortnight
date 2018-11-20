@@ -1,0 +1,101 @@
+{
+    "authors": [
+        {
+            "id": 1,
+            "firstName": "string",
+            "lastName": ""
+        }
+    ],
+    "books": 
+    {
+        "_embedded": 
+        {
+            "bookList": [
+                {
+                    "id": 1,
+                    "authors": [],
+                    "categories": [],
+                    "description": "",
+                    "title": "",
+                    "type": {},
+                    "subtitle": "",
+                    "languages": [
+                        {
+                            "id": 1,
+                            "name": "english"
+                        }
+                    ],
+                    "publisher": {},
+                    "yearOfAppearance": 1973
+                },
+                {
+                    "id": 1,
+                    "authors": [],
+                    "categories": [],
+                    "description": "",
+                    "title": "",
+                    "type": {},
+                    "subtitle": "",
+                    "languages": [
+                        {
+                            "id": 1,
+                            "name": "english"
+                        }
+                    ],
+                    "publisher": {},
+                    "yearOfAppearance": 1973
+                },
+                {
+                    "id": 1,
+                    "authors": [],
+                    "categories": [],
+                    "description": "",
+                    "title": "",
+                    "type": {},
+                    "subtitle": "",
+                    "languages": [],
+                    "publisher": {},
+                    "yearOfAppearance": 1973
+                },
+                {
+                    "id": 1,
+                    "authors": [],
+                    "categories": [],
+                    "description": "",
+                    "title": "",
+                    "type": {},
+                    "subtitle": "",
+                    "languages": [],
+                    "publisher": {},
+                    "yearOfAppearance": 1973
+                }
+            ]
+        }
+    },
+    "bookCategories": [
+        {
+            "id": 2,
+            "name":	"Design Patterns"
+        },
+        {
+            "id": 1,
+            "name": "Software Engineering"
+        }
+    ],
+    "bookTypes": [
+        {
+            "id": 1,
+            "name": "Ebook/Kindle"
+        }
+    ],
+    "languages": [ 
+        {
+            "id": 1,
+            "name": "romanian"
+        },
+        {
+            "id": 2,
+            "name": "english"
+        }
+    ]
+}
