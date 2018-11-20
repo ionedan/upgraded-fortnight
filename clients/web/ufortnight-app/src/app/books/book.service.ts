@@ -45,30 +45,24 @@ export class BookService {
   }
 
   getBookCategories(): Observable<IBookCategory>{
-    /*return this.http.get<IBookCategory>(this.booksApi)
+    return this.http.get<IBookCategory>(this.booksApi)
       .pipe(
         catchError(this.handleError)
-      );*/
-
-    return bookCategories;
+      );
   }
 
   getBookTypes(): Observable<IBookType> {
-    /*return this.http.get<IBookType>(this.booksApi)
+    return this.http.get<IBookType>(this.booksApi)
       .pipe(
         catchError(this.handleError)
-      );*/
-
-    return bookTypes;
+      );
   }
 
   getLanguages(): Observable<ILanguage> {
-    /*return this.http.get<ILanguage>(this.booksApi)
+    return this.http.get<ILanguage>(this.booksApi)
       .pipe(
         catchError(this.handleError)
-      );*/
-
-    return languages;
+      );
   }
 
   createBook(newBook: IBook): Observable<IBook[]> {
