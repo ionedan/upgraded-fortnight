@@ -1,0 +1,5 @@
+Instalare locala json-server
+
+> npm install json-server --save
+
+(va salva in package.json din root si adauga json-server in node_modules al proiectului Starter

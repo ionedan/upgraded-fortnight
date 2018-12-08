@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 })
 export class BookNewComponent implements OnInit {
 
-  categories: Observable<IBookCategory>;
-  types: Observable<IBookType>;
-  languages: Observable<ILanguage>;
+  categories: IBookCategory[];
+  types: IBookType[];
+  languages: ILanguage[];
   bookForm: FormGroup;
 
   constructor(
@@ -33,9 +33,21 @@ export class BookNewComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.categories = this.bookService.getBookCategories();
-    this.types = this.bookService.getBookTypes();
-    this.languages = this.bookService.getLanguages();
+    this.bookService.getBookCategories()
+      .subscribe(
+        categories => this.categories = categories,
+        error => console.log(error)
+      );
+    this.bookService.getBookTypes()
+      .subscribe(
+        types => this.types = types,
+        error => console.log(error)
+      );
+    this.bookService.getLanguages()
+      .subscribe(
+        languages => this.languages = languages,
+        error => console.log(error)
+      );
   }
 
   save() {

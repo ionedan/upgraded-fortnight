@@ -22,19 +22,19 @@
         <div class="form-group">
           <label for="language">Language</label>
           <select name="languages" class="form-control" id="languages">
-            <option *ngFor="let language of languages" [value]="language.id"></option>
+            <option *ngFor="let language of languages" [value]="language.id">{{language.name}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="types">Type</label>
           <select name="types" id="types" class="form-control">
-            <option *ngFor="let type of types" [value]="type.id"></option>
+            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="categories">Category</label>
           <select name="categories" id="categories" class="form-control">
-            <option *ngFor="let category of categories" [value]="category.id"></option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
           </select>
         </div>
       </div>

@@ -2,8 +2,23 @@
     "authors": [
         {
             "id": 1,
-            "firstName": "string",
-            "lastName": ""
+            "firstName": "Albert",
+            "lastName": "Camus"
+        },
+        {
+            "id": 2,
+            "firstname": "Ravi Kant", 
+            "lastname": "Soni"
+        }, 
+        {
+            "id": 3,
+            "firstname": "Amuthan", 
+            "lastname": "Ganeshan"
+        }, 
+        {
+            "id": 4,
+            "firstname": "Rajesh", 
+            "lastname": "R V"
         }
     ],
     "books": 
@@ -13,11 +28,26 @@
             "bookList": [
                 {
                     "id": 1,
-                    "authors": [],
-                    "categories": [],
+                    "authors": [
+                        {
+                            "id": 1,
+                            "firstName": "Albert",
+                            "lastName": "Camus"
+                        }
+                    ],
+                    "categories": [
+                        {
+                            "id": 1,
+                            "name": "Literature" 
+                        }
+                    ],
                     "description": "",
-                    "title": "",
-                    "type": {},
+                    "title": "Fața și reversul * Nunta * Mitul lui Sisif * Omul revoltat * Vara",
+                    "type": 
+                        {
+                            "id": 2,
+                            "name": "Print/Paper"
+                        },
                     "subtitle": "",
                     "languages": [
                         {
@@ -25,67 +55,85 @@
                             "name": "english"
                         }
                     ],
-                    "publisher": {},
-                    "yearOfAppearance": 1973
+                    "publisher": 
+                        {
+                            "id": 1,
+                            "name": "RAO International Publishing Company",
+                            "shortname": "RAO"
+                        },
+                    "yearOfAppearance": 1994
                 },
                 {
-                    "id": 1,
-                    "authors": [],
-                    "categories": [],
+                    "id": 2,
+                    "authors": [
+                        {
+                            "id": 2,
+                            "firstname": "Ravi Kant", 
+                            "lastname": "Soni"
+                        }, 
+                        {
+                            "id": 3,
+                            "firstname": "Amuthan", 
+                            "lastname": "Ganeshan"
+                        }, 
+                        {
+                            "id": 4,
+                            "firstname": "Rajesh", 
+                            "lastname": "R V"
+                        }
+                    ],
+                    "categories": [
+                        {
+                            "id": 2,
+                            "name":	"Software Development"
+                        }
+                    ],
                     "description": "",
-                    "title": "",
-                    "type": {},
+                    "title": "Spring: Developing Java Applications for the Enterprise",
+                    "type": {
+                        "id": 1,
+                        "name": "Ebook/Kindle"
+                    },
                     "subtitle": "",
                     "languages": [
                         {
                             "id": 1,
-                            "name": "english"
+                            "name": "English"
                         }
                     ],
-                    "publisher": {},
-                    "yearOfAppearance": 1973
-                },
-                {
-                    "id": 1,
-                    "authors": [],
-                    "categories": [],
-                    "description": "",
-                    "title": "",
-                    "type": {},
-                    "subtitle": "",
-                    "languages": [],
-                    "publisher": {},
-                    "yearOfAppearance": 1973
-                },
-                {
-                    "id": 1,
-                    "authors": [],
-                    "categories": [],
-                    "description": "",
-                    "title": "",
-                    "type": {},
-                    "subtitle": "",
-                    "languages": [],
-                    "publisher": {},
-                    "yearOfAppearance": 1973
+                    "publisher": 
+                    {
+                        "id": 2,
+                        "name": "Packt Publising",
+                        "shortname": "Packt"
+                    },
+                    "yearOfAppearance": 2017
                 }
             ]
         }
     },
     "bookCategories": [
         {
+            "id": 1,
+            "name": "Literature"
+        },
+        {
             "id": 2,
             "name":	"Design Patterns"
         },
         {
-            "id": 1,
-            "name": "Software Engineering"
+            "id": 2,
+            "name":	"Software Development"
         }
     ],
     "bookTypes": [
         {
             "id": 1,
             "name": "Ebook/Kindle"
+        },
+        {
+            "id": 2,
+            "name": "Print/Paper"
         }
     ],
     "languages": [ 
@@ -96,6 +144,18 @@
         {
             "id": 2,
             "name": "english"
+        }
+    ],
+    "publishers": [
+        {
+            "id": 1,
+            "name": "RAO International Publishing Company",
+            "shortname": "RAO"
+        },
+        {
+            "id": 2,
+            "name": "Packt Publising",
+            "shortname": "Packt"
         }
     ]
 }

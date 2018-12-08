@@ -29,14 +29,14 @@ interface IBooksApiResponse {
 export class BookService {
 
   // private booksApi = 'http://localhost:8080/api/books';
-  private booksApi = 'http://localhost:3000/api/books';
+  private booksApi = 'http://localhost:3000/';
 
   constructor(
     private http: HttpClient
   ) {}
 
   getBooks(): Observable<IBook[]> {
-    return this.http.get<IBooksApiResponse>(this.booksApi)
+    return this.http.get<IBooksApiResponse>(this.booksApi + 'books')
       .pipe(
         map(response => response._embedded.bookList),
         tap(books => console.log('All:', books)),
@@ -44,23 +44,24 @@ export class BookService {
       );
   }
 
-  getBookCategories(): Observable<IBookCategory>{
-    return this.http.get<IBookCategory>(this.booksApi)
+  getBookCategories(): Observable<IBookCategory[]> {
+    return this.http.get<IBookCategory[]>(this.booksApi + 'bookCategories')
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getBookTypes(): Observable<IBookType> {
-    return this.http.get<IBookType>(this.booksApi)
+  getBookTypes(): Observable<IBookType[]> {
+    return this.http.get<IBookType[]>(this.booksApi + 'bookTypes')
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getLanguages(): Observable<ILanguage> {
-    return this.http.get<ILanguage>(this.booksApi)
+  getLanguages(): Observable<ILanguage[]> {
+    return this.http.get<ILanguage[]>(this.booksApi + 'languages')
       .pipe(
+        tap(languages => console.log(languages)),
         catchError(this.handleError)
       );
   }

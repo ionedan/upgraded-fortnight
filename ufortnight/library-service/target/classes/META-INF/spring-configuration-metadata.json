@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "ufortnight",
+      "type": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties",
+      "sourceType": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties"
+    },
+    {
+      "name": "ufortnight.cors",
+      "type": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties$Cors",
+      "sourceType": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "ufortnight.cors.url",
+      "type": "java.lang.String",
+      "sourceType": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties$Cors"
+    }
+  ],
+  "hints": []
+}
