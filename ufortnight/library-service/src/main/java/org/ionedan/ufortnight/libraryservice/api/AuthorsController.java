@@ -16,39 +16,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/authors")
-@ExposesResourceFor(Author.class)
 public class AuthorsController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorsController.class);
 
     private final AuthorsRepository repository;
-    private final EntityLinks entityLinks;
 
     public AuthorsController(AuthorsRepository repository, EntityLinks entityLinks) {
         Assert.notNull(repository, "Address repository cannot be null");
         Assert.notNull(entityLinks, "EntityLinks cannot be null");
 
         this.repository = repository;
-        this.entityLinks = entityLinks;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    HttpEntity<Resources<Author>> fetchAllAuthors() {
-        var resources = new Resources<Author>(this.repository.findAll());
-        return new ResponseEntity<Resources<Author>>(resources, HttpStatus.OK);
+    List<Author> fetchAllAuthors() {
+        return this.repository.findAll();
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    HttpEntity<Resource<Author>> fetchAuthorById(@PathVariable Long id) {
+    Author fetchAuthorById(@PathVariable Long id) {
         var author = this.repository.findById(id)
                 .orElseThrow(
                         () -> new AuthorNotFoundException(String.format("Author having id '%d' not found.", id))
                 );
 
-        var resource = new Resource<Author>(author);
-        return new ResponseEntity<>(resource, HttpStatus.OK);
+        return author;
     }
 
 

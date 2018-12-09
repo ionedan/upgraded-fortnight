@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/base :: layout(~{::title}, ~{::section})}" lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>uFortnight Library</title>
-</head>
-<body>
-    <section>
-        <p>Books</p>
-    </section>
-</body>
+<title>uFortnight Library</title>
+<section>
+    <p>Books</p>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Authors</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book, iter: ${model.books}">
+            <th scope="row" th:text="${iter.count}"></th>
+            <td ><a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a></td>
+            <td th:text="${book.authors}"></td>
+            <td>Edit/Delete</td>
+        </tr>
+
+        </tbody>
+    </table>
+</section>
 </html>

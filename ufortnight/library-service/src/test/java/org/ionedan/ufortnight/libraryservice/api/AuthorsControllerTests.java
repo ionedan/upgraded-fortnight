@@ -70,9 +70,9 @@ public class AuthorsControllerTests {
         mockMvc.perform(get("/api/authors"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                .andExpect(jsonPath("$._embedded.authorList", hasSize(3)))
-                .andExpect(jsonPath("$._embedded.authorList[0].firstName", is("firstName1")))
-                .andExpect(jsonPath("$._embedded.authorList[0].lastName", is("lastName1")));
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].firstName", is("firstName1")))
+                .andExpect(jsonPath("$[0].lastName", is("lastName1")));
     }
 
 

@@ -16,47 +16,42 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
 @RequestMapping("/api/books")
-@ExposesResourceFor(Book.class)
 public class BooksController {
 
     private static final Logger logger = LoggerFactory.getLogger(BooksController.class);
 
     private final BooksRepository repository;
-    private final EntityLinks entityLinks;
 
     public BooksController(BooksRepository repository, EntityLinks entityLinks) {
         Assert.notNull(repository, "repository should not be null");
         Assert.notNull(entityLinks, "entityLinks should not be null");
 
         this.repository = repository;
-        this.entityLinks = entityLinks;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    HttpEntity<Resources<Book>> fetchAllBooks() {
+    List<Book> fetchAllBooks() {
         logger.info("Fetching all books.. ");
         var books = this.repository.findAll();
         logger.info("Fetched " + books.size() + " books.");
 
-        var resources = new Resources<Book>(books);
-
-        return new ResponseEntity<Resources<Book>>(resources, HttpStatus.OK);
+        return books;
     }
 
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    HttpEntity<Resource<Book>> fetchBookById(@PathVariable long id) {
+    Book fetchBookById(@PathVariable long id) {
         var book = this.repository.findById(id)
                 .orElseThrow(
                         () -> new BookNotFoundException(
                                 String.format("Book having the id '%d' was not found", id))
                 );
 
-        return new ResponseEntity<>(
-                new Resource<Book>(book),
-                HttpStatus.OK);
+        return book;
     }
 
 

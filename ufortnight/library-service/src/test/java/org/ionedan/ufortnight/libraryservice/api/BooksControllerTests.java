@@ -85,12 +85,12 @@ public class BooksControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.parseMediaType(mediaType)))
                 //.andExpect(content().string("blabla "))
-                .andExpect(jsonPath("$._embedded.bookList", hasSize(2)))
-                .andExpect(jsonPath("$._embedded.bookList[?(@.title=='Book1')]", hasSize(1)))
-                .andExpect(jsonPath("$._embedded.bookList[?(@.title=='Book2')]", hasSize(1)))
-                .andExpect(jsonPath("$._embedded..authors", hasSize(2)))
-                .andExpect(jsonPath("$._embedded..authors[?(@.firstName=='firstname11')]", hasSize(1)))
-                .andExpect(jsonPath("$._embedded..authors[?(@.lastName=='lastname12')]", hasSize(1)));
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[?(@.title=='Book1')]", hasSize(1)))
+                .andExpect(jsonPath("$[?(@.title=='Book2')]", hasSize(1)))
+                .andExpect(jsonPath("$..authors", hasSize(2)))
+                .andExpect(jsonPath("$..authors[?(@.firstName=='firstname11')]", hasSize(1)))
+                .andExpect(jsonPath("$..authors[?(@.lastName=='lastname12')]", hasSize(1)));
     }
 
     @Test

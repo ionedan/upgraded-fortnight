@@ -1,5 +1,6 @@
 package org.ionedan.ufortnight.website.component;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.ionedan.ufortnight.website.entity.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,22 +43,20 @@ public class LibraryService {
     public List<Book> fetchAllBooks() {
         // https://gist.github.com/ripla/6f1516e3d0c28f4d591303d4060342d4
         final var  url = libraryServiceUrl + bookUrl;
-        //var response = this.restTemplate.getForEntity(url, BookResources.class);
-
         Map<String, Integer> params = new HashMap<>();
         /*params.put("page", offset / limit);
         params.put("size", limit);*/
 
-        final HttpEntity<Resources<Book>> response = restTemplate
+        final var response = restTemplate
                 .exchange(url, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<Resources<Book>>() {
+                        new ParameterizedTypeReference<List<Book>>() {
                         }, params);
 
-        if (((ResponseEntity<Resources<Book>>) response).getStatusCode() == HttpStatus.OK) {
+        if (response.getStatusCode() == HttpStatus.OK) {
 
             logger.info(response.toString());
 
-            return response.getBody().getContent()
+            return response.getBody()
                     .stream()
                     //.map(Resource::getContent)
                     .collect(Collectors.toList());
@@ -66,4 +65,7 @@ public class LibraryService {
         return new ArrayList<Book>();
     }
 
+    public Book fetchBookById(long id) {
+        throw new NotImplementedException("Not yet implemented");
+    }
 }

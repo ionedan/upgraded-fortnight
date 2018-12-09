@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/base :: layout(~{::title}, ~{::section})}" lang="en" xmlns:th="http://www.thymeleaf.org">
-    <title>uFortnight Library</title>
+    <title th:text="${model.title}"></title>
     <section>
-        <p>Some content</p>
     </section>
 </html>
+
