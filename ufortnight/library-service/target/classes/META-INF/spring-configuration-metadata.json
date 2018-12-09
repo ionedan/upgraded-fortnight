@@ -11,12 +11,6 @@
       "sourceType": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties"
     }
   ],
-  "properties": [
-    {
-      "name": "ufortnight.cors.url",
-      "type": "java.lang.String",
-      "sourceType": "org.ionedan.ufortnight.libraryservice.config.UfortnightConfigurationProperties$Cors"
-    }
-  ],
+  "properties": [],
   "hints": []
 }

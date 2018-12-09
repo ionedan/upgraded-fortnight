@@ -3,6 +3,8 @@ package org.ionedan.ufortnight.libraryservice.api;
 import org.ionedan.ufortnight.libraryservice.domain.models.Book;
 import org.ionedan.ufortnight.libraryservice.exceptions.BookNotFoundException;
 import org.ionedan.ufortnight.libraryservice.services.BooksRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Resource;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @ExposesResourceFor(Book.class)
 public class BooksController {
 
+    private static final Logger logger = LoggerFactory.getLogger(BooksController.class);
+
     private final BooksRepository repository;
     private final EntityLinks entityLinks;
 
@@ -32,7 +36,12 @@ public class BooksController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     HttpEntity<Resources<Book>> fetchAllBooks() {
-        var resources = new Resources<Book>(this.repository.findAll());
+        logger.info("Fetching all books.. ");
+        var books = this.repository.findAll();
+        logger.info("Fetched " + books.size() + " books.");
+
+        var resources = new Resources<Book>(books);
+
         return new ResponseEntity<Resources<Book>>(resources, HttpStatus.OK);
     }
 

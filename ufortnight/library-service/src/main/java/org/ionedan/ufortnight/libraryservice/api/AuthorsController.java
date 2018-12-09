@@ -3,6 +3,8 @@ package org.ionedan.ufortnight.libraryservice.api;
 import org.ionedan.ufortnight.libraryservice.domain.models.Author;
 import org.ionedan.ufortnight.libraryservice.exceptions.AuthorNotFoundException;
 import org.ionedan.ufortnight.libraryservice.services.AuthorsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Resource;
@@ -18,6 +20,8 @@ import org.springframework.util.Assert;
 @RequestMapping("/api/authors")
 @ExposesResourceFor(Author.class)
 public class AuthorsController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthorsController.class);
 
     private final AuthorsRepository repository;
     private final EntityLinks entityLinks;

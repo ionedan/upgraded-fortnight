@@ -1,1 +1,13 @@
 org\ionedan\ufortnight\website\Application.class
+org\ionedan\ufortnight\website\entity\BookTypes.class
+org\ionedan\ufortnight\website\controller\BookController.class
+org\ionedan\ufortnight\website\entity\BookType.class
+org\ionedan\ufortnight\website\entity\Author.class
+org\ionedan\ufortnight\website\entity\Book.class
+org\ionedan\ufortnight\website\entity\BookCategory.class
+org\ionedan\ufortnight\website\entity\Publisher.class
+org\ionedan\ufortnight\website\entity\Language.class
+org\ionedan\ufortnight\website\component\BookServiceProxy.class
+org\ionedan\ufortnight\website\controller\HomeController.class
+org\ionedan\ufortnight\website\entity\Book$BookBuilder.class
+org\ionedan\ufortnight\website\entity\Author$AuthorBuilder.class
