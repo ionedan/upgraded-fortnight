@@ -1,19 +1,14 @@
 package org.ionedan.ufortnight.website.component;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.ionedan.ufortnight.website.dto.BookViewModel;
 import org.ionedan.ufortnight.website.entity.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,7 +33,6 @@ public class LibraryService {
     public LibraryService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-
 
     public List<Book> fetchAllBooks() {
         // https://gist.github.com/ripla/6f1516e3d0c28f4d591303d4060342d4
@@ -66,6 +60,26 @@ public class LibraryService {
     }
 
     public Book fetchBookById(long id) {
-        throw new NotImplementedException("Not yet implemented");
+        final var url = this.libraryServiceUrl + bookUrl;
+
+        Map<String, Long> params = new HashMap<>();
+        params.put("id", id);
+
+        final var response = this.restTemplate.exchange(
+                url
+                , HttpMethod.GET
+                , null
+                , new ParameterizedTypeReference<Book>() {}
+                , params);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else {
+            // TODO: throws a customer error to let know user that the book was not found.
+            return null;
+        }
+    }
+
+    public void create(BookViewModel newBook) {
     }
 }

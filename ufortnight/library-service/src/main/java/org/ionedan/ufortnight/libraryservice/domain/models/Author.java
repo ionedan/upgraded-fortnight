@@ -11,7 +11,11 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Builder @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Author {
 
     @Id

@@ -1,3 +1,4 @@
+org\ionedan\ufortnight\libraryservice\config\LoadDatabase.class
 org\ionedan\ufortnight\libraryservice\domain\models\BookType.class
 org\ionedan\ufortnight\libraryservice\domain\models\BookTypes.class
 META-INF\spring-configuration-metadata.json

@@ -30,6 +30,7 @@ public class BooksRepositoryTests {
     @Before
     public void setUp() {
         this.booksRepository.deleteAll();
+        this.authorRepository.deleteAll();
     }
 
     @Test

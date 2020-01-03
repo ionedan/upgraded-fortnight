@@ -5,14 +5,7 @@ import org.ionedan.ufortnight.libraryservice.exceptions.AuthorNotFoundException;
 import org.ionedan.ufortnight.libraryservice.services.AuthorsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.Assert;
 
@@ -26,9 +19,8 @@ public class AuthorsController {
 
     private final AuthorsRepository repository;
 
-    public AuthorsController(AuthorsRepository repository, EntityLinks entityLinks) {
+    public AuthorsController(AuthorsRepository repository) {
         Assert.notNull(repository, "Address repository cannot be null");
-        Assert.notNull(entityLinks, "EntityLinks cannot be null");
 
         this.repository = repository;
     }
@@ -40,12 +32,11 @@ public class AuthorsController {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     Author fetchAuthorById(@PathVariable Long id) {
-        var author = this.repository.findById(id)
+        return this.repository.findById(id)
                 .orElseThrow(
-                        () -> new AuthorNotFoundException(String.format("Author having id '%d' not found.", id))
+                        () -> new AuthorNotFoundException(
+                                String.format("Author having id '%d' not found.", id))
                 );
-
-        return author;
     }
 
 

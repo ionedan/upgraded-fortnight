@@ -5,14 +5,7 @@ import org.ionedan.ufortnight.libraryservice.exceptions.BookNotFoundException;
 import org.ionedan.ufortnight.libraryservice.services.BooksRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +19,8 @@ public class BooksController {
 
     private final BooksRepository repository;
 
-    public BooksController(BooksRepository repository, EntityLinks entityLinks) {
+    public BooksController(BooksRepository repository) {
         Assert.notNull(repository, "repository should not be null");
-        Assert.notNull(entityLinks, "entityLinks should not be null");
 
         this.repository = repository;
     }
@@ -45,13 +37,11 @@ public class BooksController {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     Book fetchBookById(@PathVariable long id) {
-        var book = this.repository.findById(id)
+        return this.repository.findById(id)
                 .orElseThrow(
                         () -> new BookNotFoundException(
                                 String.format("Book having the id '%d' was not found", id))
                 );
-
-        return book;
     }
 
 
@@ -91,8 +81,10 @@ public class BooksController {
         repository.findById(id)
                 .ifPresentOrElse(
                         this.repository::delete,
-                        () -> new BookNotFoundException(
-                                String.format("Book having the id '%d' was not found", id))
+                        () -> {
+                            throw new BookNotFoundException(
+                                    String.format("Book having the id '%d' was not found", id));
+                        }
                 );
     }
 
